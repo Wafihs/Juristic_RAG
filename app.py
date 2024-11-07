@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
+from google.colab import drive
+drive.mount('/content/drive')
 
 # Load environment variables from a .env file
 load_dotenv()
