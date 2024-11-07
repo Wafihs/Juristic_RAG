@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from google.colab import drive
-drive.mount('/content/drive')
+#from google.colab import drive
+#drive.mount('/content/drive')
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -17,7 +17,7 @@ st.title("Shafie Fiqh Ruling Finder")
 query = st.text_area("Enter your question related to Shafie Fiqh rulings:")
 
 # Define the path to the FAISS index
-output_file_path = "/content/drive/MyDrive/UBD/PhD/Embeddings/index.faiss"
+#output_file_path = "/content/drive/MyDrive/UBD/PhD/Embeddings/index.faiss"
 
 # Function to retrieve relevant chunks
 def retrieve_relevant_chunks(query, top_k=3):
@@ -27,7 +27,8 @@ def retrieve_relevant_chunks(query, top_k=3):
     query_embedding = model.encode([query])
 
     # Read FAISS index
-    index = faiss.read_index(output_file_path)
+    index = faiss.read_index("/content/index.faiss")
+    #index = faiss.read_index(output_file_path)
     # Search for similar chunks
     distances, indices = index.search(np.array(query_embedding), top_k)
 
