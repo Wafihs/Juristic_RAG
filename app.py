@@ -18,6 +18,14 @@ query = st.text_area("Enter your question related to Shafie Fiqh rulings:")
 
 # Define the path to the FAISS index
 #output_file_path = "/content/drive/MyDrive/UBD/PhD/Embeddings/index.faiss"
+import requests
+
+url = "https://storage.cloud.google.com/juristic_v1/index.faiss"  # Public URL of your file
+response = requests.get(url, allow_redirects=True)
+
+# Save the file to a local path
+with open('/content/index.faiss', 'wb') as f:
+    f.write(response.content)
 
 # Function to retrieve relevant chunks
 def retrieve_relevant_chunks(query, top_k=3):
